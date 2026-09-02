@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V4NISH — Official Store</title>
+<meta name="description" content="V4NISH — niezależny streetwear.">
+<style>
+:root{--bg:#050505;--panel:#0c0c0c;--line:#242424;--muted:#8b8b8b;--white:#f5f5f5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif}
+button,a{font:inherit}a{text-decoration:none;color:inherit}.announcement{text-align:center;background:#fff;color:#000;padding:9px;font-size:10px;font-weight:800;letter-spacing:2px}
+header{position:sticky;top:0;z-index:30;height:76px;border-bottom:1px solid var(--line);background:rgba(5,5,5,.94);backdrop-filter:blur(15px);display:flex;align-items:center;padding:0 5%;gap:30px}
+.logo{font-size:25px;font-weight:1000;letter-spacing:7px;margin-right:auto}nav{display:flex;gap:28px}nav a{font-size:11px;letter-spacing:2px;color:#aaa}nav a.active,nav a:hover{color:#fff}
+.cartBtn{background:transparent;color:#fff;border:1px solid #333;padding:11px 15px;cursor:pointer;font-size:11px;letter-spacing:1px}
+.hero{min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 40%,#262626 0,#0b0b0b 32%,#050505 72%);padding:50px 20px}
+.hero h1{font-size:clamp(64px,14vw,175px);letter-spacing:12px;margin:0;font-weight:1000}.hero p{color:#aaa;letter-spacing:5px;margin:15px 0 30px}
+.btn{display:inline-block;border:1px solid #555;background:#fff;color:#000;padding:14px 27px;font-size:11px;font-weight:900;letter-spacing:2px;cursor:pointer}
+.wrap{max-width:1250px;margin:auto;padding:80px 5%}.sectionHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px}.sectionHead h2{font-size:30px;letter-spacing:4px;margin:0}.sectionHead span{font-size:11px;color:#666}
+.shopLayout{display:grid;grid-template-columns:180px 1fr;gap:30px}.filters{border-right:1px solid var(--line);padding-right:25px}.filters h3{font-size:11px;letter-spacing:2px;margin:0 0 18px}.filters button{display:block;width:100%;background:none;border:0;color:#777;text-align:left;padding:8px 0;cursor:pointer;font-size:12px}.filters button.active,.filters button:hover{color:#fff}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);overflow:hidden}.productVisual{aspect-ratio:1/1;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,#1c1c1c,#080808);overflow:hidden}.productVisual:before{content:"";position:absolute;width:52%;height:58%;background:#0a0a0a;border-radius:22px 22px 10px 10px;box-shadow:0 15px 35px #000;transform:translateY(8px)}.productVisual.tee:before{height:42%;border-radius:12px}.productVisual.cap:before{height:24%;border-radius:50% 50% 18% 18%}.print{z-index:2;font-weight:1000;font-size:22px;letter-spacing:2px;color:#eee;transform:translateY(8px)}.tag{position:absolute;z-index:4;left:12px;top:12px;background:#fff;color:#000;padding:6px 8px;font-size:9px;font-weight:900;letter-spacing:1px}
+.info{padding:18px}.name{font-size:12px;font-weight:800;letter-spacing:1px}.price{margin:8px 0 15px;color:#aaa;font-size:12px}.sizes{display:flex;gap:5px;margin-bottom:10px}.sizes button{flex:1;background:#090909;color:#bbb;border:1px solid #333;padding:8px 2px;font-size:10px;cursor:pointer}.sizes button.selected{background:#fff;color:#000}.add{width:100%;padding:12px;background:#fff;border:0;color:#000;font-size:10px;font-weight:900;letter-spacing:1px;cursor:pointer}
+.collections{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.collection{min-height:240px;border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;justify-content:end;background:linear-gradient(135deg,#161616,#070707)}.collection h3{font-size:28px;letter-spacing:4px;margin:0 0 8px}.collection p{color:#888;margin:0}
+.about{border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.about p{max-width:680px;margin:auto;color:#888;line-height:1.8}
+footer{padding:45px 5%;display:flex;justify-content:space-between;color:#666;font-size:10px;letter-spacing:2px}
+.drawer{position:fixed;right:0;top:0;width:min(440px,100%);height:100%;background:#0b0b0b;border-left:1px solid #333;z-index:60;transform:translateX(100%);transition:.3s;padding:28px;overflow:auto}.drawer.open{transform:translateX(0)}.close{float:right;border:0;background:none;color:#fff;font-size:26px;cursor:pointer}.drawer h2{letter-spacing:3px}.cartItem{border-bottom:1px solid #222;padding:17px 0;color:#aaa}.remove{float:right;color:#777;cursor:pointer}.total{font-size:18px;margin:25px 0}.checkout{width:100%;padding:15px;border:0;background:#fff;color:#000;font-weight:900;letter-spacing:1px}
+.overlay{display:none;position:fixed;inset:0;background:#0009;z-index:50}.overlay.show{display:block}
+@media(max-width:850px){nav{display:none}.shopLayout{grid-template-columns:1fr}.filters{border-right:0;border-bottom:1px solid var(--line);padding:0 0 18px}.filters button{display:inline-block;width:auto;margin-right:18px}.products{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.products,.collections{grid-template-columns:1fr}.hero h1{letter-spacing:6px}header{padding:0 20px}.wrap{padding:55px 20px}.logo{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="announcement">DARMOWA DOSTAWA OD 300 ZŁ</div>
+<header>
+<a class="logo" href="#home">V4NISH</a>
+<nav><a class="active" href="#shop">SKLEP</a><a href="#collections">KOLEKCJE</a><a href="#about">O NAS</a></nav>
+<button class="cartBtn" onclick="openCart()">KOSZYK (<span id="count">0</span>)</button>
+</header>
+
+<section class="hero" id="home"><div><h1>V4NISH</h1><p>NOT MADE TO FIT IN.</p><a class="btn" href="#shop">ZOBACZ SKLEP</a></div></section>
+
+<section class="wrap" id="shop">
+<div class="sectionHead"><h2>SKLEP</h2><span id="productCount">6 PRODUKTÓW</span></div>
+<div class="shopLayout">
+<aside class="filters">
+<h3>KATEGORIA</h3>
+<button class="active" onclick="filter('all',this)">Wszystkie</button><button onclick="filter('hoodie',this)">Bluzy</button><button onclick="filter('tee',this)">Koszulki</button><button onclick="filter('cap',this)">Akcesoria</button>
+<h3 style="margin-top:28px">SORTOWANIE</h3><button onclick="sortProducts('low')">Cena: rosnąco</button><button onclick="sortProducts('high')">Cena: malejąco</button>
+</aside>
+<div class="products" id="products"></div>
+</div>
+</section>
+
+<section class="wrap" id="collections">
+<div class="sectionHead"><h2>KOLEKCJE</h2><span>DROP 01 / 2026</span></div>
+<div class="collections"><div class="collection"><h3>DROP 01</h3><p>THE FIRST SIGNAL.</p></div><div class="collection"><h3>LIMITED</h3><p>ONLY WHEN IT'S GONE.</p></div></div>
+</section>
+
+<section class="wrap about" id="about"><h2 style="letter-spacing:4px">O NAS</h2><p>V4NISH to niezależny streetwear oparty na mocnych grafikach, czerni i prostym podejściu. Nie projektujemy pod tłum. Projektujemy po swojemu.</p></section>
+<footer><span>V4NISH © 2026</span><span>INSTAGRAM · TIKTOK · KONTAKT</span></footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer"><button class="close" onclick="closeCart()">×</button><h2>KOSZYK</h2><div id="items"></div><div class="total">RAZEM: <b id="total">0,00 zł</b></div><button class="checkout" onclick="checkout()">PRZEJDŹ DO KASY</button></aside>
+
+<script>
+const products=[
+{id:1,type:'hoodie',name:'V4NISH STREAK HOODIE',price:249,print:'V4NISH',tag:'NOWOŚĆ'},
+{id:2,type:'hoodie',name:'V4NISH THORNS HOODIE',price:269,print:'✦ V4NISH ✦',tag:'LIMITED'},
+{id:3,type:'hoodie',name:'V4NISH ANGEL HOODIE',price:269,print:'V4NISH',tag:'NOWOŚĆ'},
+{id:4,type:'tee',name:'V4NISH STREAK T-SHIRT',price:129,print:'V4NISH',tag:'NOWOŚĆ'},
+{id:5,type:'tee',name:'V4NISH SHADOW T-SHIRT',price:129,print:'V4NISH',tag:'DROP 01'},
+{id:6,type:'cap',name:'V4NISH LOGO CAP',price:89,print:'V4NISH',tag:'NOWOŚĆ'}
+];
+let current=[...products],cart=[],selected={};
+function money(n){return n.toFixed(2).replace('.',',')+' zł'}
+function render(list=current){
+document.getElementById('products').innerHTML=list.map(p=>`<article class="card"><div class="productVisual ${p.type}"><span class="tag">${p.tag}</span><span class="print">${p.print}</span></div><div class="info"><div class="name">${p.name}</div><div class="price">${money(p.price)}</div>${p.type!=='cap'?`<div class="sizes">${['XS','S','M','L','XL'].map(s=>`<button class="${selected[p.id]===s?'selected':''}" onclick="pick(${p.id},'${s}',this)">${s}</button>`).join('')}</div>`:''}<button class="add" onclick="add(${p.id})">DODAJ DO KOSZYKA</button></div></article>`).join('');
+}
+function pick(id,size,el){selected[id]=size;el.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));el.classList.add('selected')}
+function add(id){let p=products.find(x=>x.id===id);if(p.type!=='cap'&&!selected[id]){selected[id]='M';render(current)}cart.push({p,size:selected[id]||'-'});renderCart();openCart()}
+function remove(i){cart.splice(i,1);renderCart()}
+function renderCart(){document.getElementById('count').textContent=cart.length;document.getElementById('items').innerHTML=cart.length?cart.map((x,i)=>`<div class="cartItem"><b>${x.p.name}</b><br>Rozmiar: ${x.size} · ${money(x.p.price)} <span class="remove" onclick="remove(${i})">USUŃ</span></div>`).join(''):'<div class="cartItem">Koszyk jest pusty.</div>';document.getElementById('total').textContent=money(cart.reduce((s,x)=>s+x.p.price,0))}
+function openCart(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show')}
+function closeCart(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+function filter(type,el){document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));el.classList.add('active');current=type==='all'?[...products]:products.filter(p=>p.type===type);document.getElementById('productCount').textContent=current.length+' PRODUKTÓW';render(current)}
+function sortProducts(dir){current.sort((a,b)=>dir==='low'?a.price-b.price:b.price-a.price);render(current)}
+function checkout(){alert('To jest wersja demonstracyjna. Przed sprzedażą trzeba podłączyć płatności, dostawę, dane sprzedawcy i regulamin.')}
+render();renderCart();
+</script>
+</body>
+</html>
